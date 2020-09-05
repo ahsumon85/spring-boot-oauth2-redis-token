@@ -12,10 +12,6 @@ public interface UserService {
 
 	public BaseResponse createAminOrBloggerAccount(@Valid UsersDTO usersDTO);
 
-	public List<UsersDTO> findAllUsersInfoByStatus(boolean status);
-
-	public BaseResponse approveAndDeactiveUsrByAdmin(Long userId, boolean active);
-
 	public List<UserRolesDTO> findUserRolesByUsername(String username);
 
 	public UsersDTO findUserByUserName(String username);

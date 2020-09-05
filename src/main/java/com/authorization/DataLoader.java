@@ -28,7 +28,7 @@ public class DataLoader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		if (userRepository.findAll().isEmpty()) {
-			String roles[] = {"ROLE_ADMIN", "ROLE_BLOGGER"};
+			String roles[] = {"ROLE_ADMIN", "ROLE_USER"};
 			Users users = new Users();
 			users.setUsername("admin");
 			users.setEnabled(true);

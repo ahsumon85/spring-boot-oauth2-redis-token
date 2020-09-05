@@ -39,17 +39,6 @@ public class UserServiceImpl implements UserService {
 		return new BaseResponse(CustomMessage.SAVE_SUCCESS_MESSAGE);
 	}
 
-	public List<UsersDTO> findAllUsersInfoByStatus(boolean status) {
-		List<Users> deactivateUsersInfo = userRepository.findByEnabled(status);
-		return deactivateUsersInfo.stream().map(this::provideUserToUserDto).collect(Collectors.toList());
-	}
-
-	@Transactional
-	public BaseResponse approveAndDeactiveUsrByAdmin(Long userId, boolean status) {
-		userRepository.approveIncativeUser(userId, status);
-		return new BaseResponse(UserInfo.BLOGGER.getType() + CustomMessage.BLOGGER_ACTIVE_SUCCESS);
-	}
-
 	@Transactional
 	public List<UserRolesDTO> findUserRolesByUsername(String username) {
 		List<UserRoles> roles = new ArrayList<>();

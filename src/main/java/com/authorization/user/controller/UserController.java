@@ -57,29 +57,6 @@ public class UserController {
 		return new ResponseEntity<>(baseResponse, HttpStatus.CREATED);
 	}
 
-	@GetMapping(value = "/find/inactive/users")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<List<UsersDTO>> findAllInactiveBloggersInfoByStatus() {
-		List<UsersDTO> list = userService.findAllUsersInfoByStatus(StatusValue.INACTIVE.getStatus());
-		return new ResponseEntity<List<UsersDTO>>(list, HttpStatus.OK);
-	}
-
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping(value = "/find/active/users")
-	public ResponseEntity<List<UsersDTO>> findAllActiveUsersInfoByStatus() {
-		List<UsersDTO> list = userService.findAllUsersInfoByStatus(StatusValue.ACTIVE.getStatus());
-		return new ResponseEntity<List<UsersDTO>>(list, HttpStatus.OK);
-	}
-
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping(value = "/approve/deactivate")
-	public ResponseEntity<BaseResponse> approveAndDeactiveUsrByAdmin(
-			@Valid @RequestParam @NotNull(message = "user Id not be null") Long userId,
-			@Valid @RequestParam @NotNull(message = "active status not be null") boolean active) {
-		BaseResponse response = userService.approveAndDeactiveUsrByAdmin(userId, active);
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
-	}
-
 	@RequestMapping(value = "/roles", method = RequestMethod.GET)
 	public List<UserRolesDTO> findLoginUserRoles(@RequestParam String username) {
 		List<UserRolesDTO> roles = userService.findUserRolesByUsername(username);
